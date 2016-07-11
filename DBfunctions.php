@@ -26,6 +26,57 @@ include('db_connect.php');
 }
 ?>
 
+<?php //-- update University Details--
+function editUniversities(){
+
+include('db_connect.php');
+	$iduniversity = $_REQUEST['id'];
+	if(isset($_POST['submit'])){
+	$name = $_POST['name'];	
+	$email = $_POST['email'];	
+	$phone_no = $_POST['phone_no'];	
+	$box_no = $_POST['box_no'];	
+	$location = $_POST['location'];	
+	$details = $_POST['details'];	
+		
+		$insert = mysqli_query($con,"UPDATE university SET name='$name',email='$email',phone_no='$phone_no',box_no='$box_no',
+		location='$location',details='$details' WHERE iduniversity=$iduniversity");
+			
+			if($insert){
+				echo '<meta content="1;index.php?action=Universities" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($connect);
+			}
+	
+	
+	}
+
+}
+?>
+
+<?php //-- delete University Details--
+function deleteUniversities(){
+
+include('db_connect.php');
+	$iduniversity = $_REQUEST['id'];
+	
+	$insert = mysqli_query($con,"DELETE FROM university WHERE iduniversity = '$iduniversity'");
+			
+			if($insert){
+				echo '<meta content="1;index.php?action=Universities" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($con);
+			}
+	
+	
+
+}
+?>
+
+
+
 
 <?php //-- insert Colleges Details--
 function insertColleges(){
@@ -51,6 +102,56 @@ include('db_connect.php');
 	
 	
 	}
+
+}
+?>
+
+<?php //-- update Colleges Details--
+function editColleges(){
+
+include('db_connect.php');
+	$idcollege = $_REQUEST['id'];
+	if(isset($_POST['submit'])){
+	$name = $_POST['name'];	
+	$email = $_POST['email'];	
+	$phone_no = $_POST['phone_no'];	
+	$box_no = $_POST['box_no'];	
+	$iduniversity = $_POST['iduniversity'];	
+	$details = $_POST['details'];	
+		
+		$insert = mysqli_query($con,"UPDATE college SET name='$name',email='$email',phone_no='$phone_no',box_no='$box_no',
+		details='$details',iduniversity='$iduniversity' WHERE idcollege='$idcollege'");
+			
+			if($insert){
+				echo '<meta content="1;index.php?action=Colleges" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($connect);
+			}
+	
+	
+	}
+
+}
+?>
+
+<?php //-- delete Colleges Details--
+function deleteColleges(){
+
+include('db_connect.php');
+	$idcollege = $_REQUEST['id'];
+		
+		$insert = mysqli_query($con,"DELETE FROM college WHERE idcollege='$idcollege'");
+			
+			
+			if($insert){
+				echo '<meta content="1;index.php?action=Colleges" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($connect);
+			}
+	
+	
 
 }
 ?>
@@ -111,8 +212,6 @@ function deleteSchools(){
 
 include('db_connect.php');
 	$idschool = $_REQUEST['id'];
-	$name = $_POST['name'];
-	$idcollege = $_POST['idcollege'];
 		
 		$insert = mysqli_query($con,"DELETE FROM school WHERE idschool = '$idschool'");
 			
