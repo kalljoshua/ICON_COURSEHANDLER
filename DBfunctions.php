@@ -26,6 +26,7 @@ include('db_connect.php');
 }
 ?>
 
+
 <?php //-- insert Colleges Details--
 function insertColleges(){
 
@@ -54,6 +55,9 @@ include('db_connect.php');
 }
 ?>
 
+
+
+
 <?php //-- insert Schools Details--
 function insertSchools(){
 
@@ -78,7 +82,56 @@ include('db_connect.php');
 }
 ?>
 
-<?php //-- insert Courses Details--
+<?php //-- Update School Details--
+function editSchools(){
+
+include('db_connect.php');
+	$idschool = $_REQUEST['id'];
+	if(isset($_POST['submit'])){
+	$name = $_POST['name'];
+	$idcollege = $_POST['idcollege'];
+		
+		$insert = mysqli_query($con,"UPDATE school SET name='$name',idcollege='$idcollege' WHERE idschool='$idschool'");
+			
+			if($insert){
+				echo '<meta content="1;index.php?action=Schools" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($connect);
+			}
+	
+	
+	}
+
+}
+?>
+
+<?php //-- Delete School Details--
+function deleteSchools(){
+
+include('db_connect.php');
+	$idschool = $_REQUEST['id'];
+	$name = $_POST['name'];
+	$idcollege = $_POST['idcollege'];
+		
+		$insert = mysqli_query($con,"DELETE FROM school WHERE idschool = '$idschool'");
+			
+			if($insert){
+				echo '<meta content="1;index.php?action=Schools" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($connect);
+			}
+	
+	
+
+}
+?>
+
+
+
+
+<?php //-- insert Course Details--
 function insertCourses(){
 
 include('db_connect.php');
@@ -103,6 +156,57 @@ include('db_connect.php');
 	
 	
 	}
+
+}
+?>
+
+<?php //-- update Course Details--
+function editCourses(){
+
+include('db_connect.php');
+	$idcourse = $_REQUEST['id'];
+	if(isset($_POST['submit'])){
+	$name = $_POST['name'];
+	$tuition = $_POST['tuition'];
+	$duration = $_POST['duration'];
+	$cp_pujab = $_POST['cp_pujab'];
+	$cp_private = $_POST['cp_private'];
+	$details = $_POST['details'];
+	$idschool = $_POST['idschool'];
+		
+		$insert = mysqli_query($con,"UPDATE course SET name='$name',tuition='$tuition',duration='$duration',
+		cp_pujab='$cp_pujab',cp_private='$cp_private',details='$details',idschool='$idschool' WHERE idcourse='$idcourse'");
+			
+			if($insert){
+				echo '<meta content="1;index.php?action=Courses" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($connect);
+			}
+	
+	
+	}
+
+}
+?>
+
+<?php //-- Delete Course Details--
+function deleteCourse(){
+
+include('db_connect.php');
+	$idcourse = $_REQUEST['id'];
+			
+		$insert = mysqli_query($con,"DELETE FROM course WHERE idcourse = '$idcourse'");
+			
+			if($insert){
+				echo '<meta content="1;index.php?action=Courses" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($connect);
+			}
+	
+	
+	
 
 }
 ?>
