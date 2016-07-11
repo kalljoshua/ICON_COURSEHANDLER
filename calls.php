@@ -12,6 +12,7 @@ include("db_connect.php");
 				Login();
 				break;
 				
+			// --Begining of the functions for Schools--		
 			case"Universities";
 			if(isset($_SESSION['userId']))
 				Universities();
@@ -26,6 +27,22 @@ include("db_connect.php");
 				Login();
 				break;
 				
+			case"editUniversities";
+			if(isset($_SESSION['userId']))
+				editUniversities();
+			else
+				Login();
+				break;
+				
+			case"deleteUniversities";
+			if(isset($_SESSION['userId']))
+				deleteUniversities();
+			else
+				Login();
+				break;
+			// --End of the functions for Schools--		
+				
+				
 			case"Colleges";
 			if(isset($_SESSION['userId']))
 				Colleges();
@@ -36,6 +53,20 @@ include("db_connect.php");
 			case"insertColleges";
 			if(isset($_SESSION['userId']))
 				insertColleges();
+			else
+				Login();
+				break;
+				
+			case"editColleges";
+			if(isset($_SESSION['userId']))
+				editColleges();
+			else
+				Login();
+				break;
+				
+			case"deleteColleges";
+			if(isset($_SESSION['userId']))
+				deleteColleges();
 			else
 				Login();
 				break;
