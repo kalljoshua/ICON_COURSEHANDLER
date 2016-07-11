@@ -40,6 +40,8 @@ include("db_connect.php");
 				Login();
 				break;
 				
+				
+			// --Begining of the functions for Schools--	
 			case"Schools";
 			if(isset($_SESSION['userId']))
 				Schools();
@@ -53,7 +55,23 @@ include("db_connect.php");
 			else
 				Login();
 				break;
-				
+			
+			case"editSchools";
+			if(isset($_SESSION['userId']))
+				editSchools();
+			else
+				Login();
+				break;
+			
+			case"deleteSchools";
+			if(isset($_SESSION['userId']))
+				deleteSchools();
+			else
+				Login();
+				break;
+			// --End of the functions for Schools--
+			
+			// --Begining of the functions for courses--	
 			case"Courses";
 			if(isset($_SESSION['userId']))
 				Courses();
@@ -68,6 +86,21 @@ include("db_connect.php");
 				Login();
 				break;
 				
+			case"editCourses";
+			if(isset($_SESSION['userId']))
+				editCourses();
+			else
+				Login();
+				break;
+				
+			case"deleteCourse";
+			if(isset($_SESSION['userId']))
+				deleteCourse();
+			else
+				Login();
+				break;
+			// --End of the functions for courses--	
+			
 							
 			case"Login";
 				Login();
