@@ -1,4 +1,4 @@
-<?php 
+<?php // top_header function
 function top_header(){
 ?>
 
@@ -260,7 +260,7 @@ function top_header(){
 
 
 
-<?php
+<?php //side_bar function
 function side_bar(){
 ?>
 
@@ -434,7 +434,9 @@ function side_bar(){
 }
 ?>
 
-<?php 
+
+
+<?php //side_control functions
 function side_control(){
 ?>
 
@@ -609,7 +611,7 @@ function side_control(){
 
 
 
-<?php 
+<?php //footer function
 function footer(){
 ?>
 
