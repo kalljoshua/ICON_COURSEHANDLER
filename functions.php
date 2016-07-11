@@ -452,10 +452,56 @@ function Universities(){
                       <td><?php echo $phone_no; ?></td>
                       <td><?php echo $box_no; ?></td>
                       <td>
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
+                       <a href="#" id="myBtn"> <i class="fa fa-edit"></i> </a>
+                        <a href="index.php?action=deleteUniversities&id=<?php echo $iduniversity;?>"> <i class="fa fa-trash-o"></i> </a>
 					  </td>
-                    </tr>	
+                    </tr>
+
+						<!-- The Modal -->
+						<div id="myModal" class="modal">
+
+						  <!-- Modal content -->
+						  <div class="modal-content">
+							<span class="close">×</span>
+							<?php 
+							$edit = mysqli_query($con,"select * from university where iduniversity='$iduniversity'");
+							$university = mysqli_fetch_array($edit);
+							?>
+							<form role="form" action="index.php?action=editUniversities&id=<?php echo $iduniversity;?>" method="POST">
+							  <div class="box-body">
+								<div class="form-group">
+								  <label for="exampleInputEmail1">University Name</label>
+								  <input type="text" name="name" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $university['name'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Email address</label>
+								  <input type="email" name="email" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $university['email'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Phone Number</label>
+								  <input type="text" name="phone_no" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $university['phone_no'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Box Number</label>
+								  <input type="text" name="box_no" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $university['box_no'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputPassword1">Location</label>
+								  <input type="text" name="location" Required="true" class="form-control" id="exampleInputPassword1" value="<?php echo $university['location'];?>">
+								</div>
+								<div class="form-group">
+								  <label>Details</label>
+								  <textarea class="form-control" name="details" Required="true" rows="3"><?php echo $university['details'];?></textarea>
+								</div>
+							  </div><!-- /.box-body -->
+
+							  <div class="box-footer">
+								<button type="submit" name="submit" class="btn btn-primary">Update</button>
+							  </div>
+							</form>
+						  </div>
+
+						</div>	
 					<?php
 						}
 					
@@ -777,10 +823,74 @@ function Colleges(){
                       <td><?php echo $phone_no; ?></td>
                       <td><?php echo $box_no; ?></td>
                       <td>
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
+                       <a href="#" id="myBtn"> <i class="fa fa-edit"></i> </a>
+                        <a href="index.php?action=deleteColleges&id=<?php echo $idcollege;?>"> <i class="fa fa-trash-o"></i> </a>
 					  </td>
-                    </tr>	
+                    </tr>
+
+						<!-- The Modal -->
+						<div id="myModal" class="modal">
+
+						  <!-- Modal content -->
+						  <div class="modal-content">
+							<span class="close">×</span>
+							<?php 
+							$edit = mysqli_query($con,"select * from college where idcollege='$idcollege'");
+							$college = mysqli_fetch_array($edit);
+							?>
+							<form role="form" action="index.php?action=editColleges&id=<?php echo $idcollege;?>" method="POST">
+							  <div class="box-body">
+								<div class="form-group">
+								  <label for="exampleInputEmail1">College Name</label>
+								  <input type="text" name="name" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $college['name'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Email address</label>
+								  <input type="email" name="email" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $college['email'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Phone Number</label>
+								  <input type="text" name="phone_no" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $college['name'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Box Number</label>
+								  <input type="text" name="box_no" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $college['box_no'];?>">
+								</div>
+								 <div class="form-group">
+								  <label>Select</label>
+								  <select class="form-control" name="iduniversity" Required="true">
+									<option>Select University</option>
+									<?php 
+									include('db_connect.php');
+										$query_university = mysqli_query($con,"SELECT * FROM university");
+										if(mysqli_num_rows($query_university)>0){
+											while($rows = mysqli_fetch_array($query_university)){
+												$iduniversity = $rows['iduniversity'];
+												$name = $rows['name'];
+												
+										?>
+										<option value="<?php echo $iduniversity; ?>"><?php echo $name; ?></option>
+										<?php
+											}
+										
+										}
+									?>
+									
+								  </select>
+								</div>
+								<div class="form-group">
+								  <label>Details</label>
+								  <textarea class="form-control" name="details" Required="true" rows="3" ><?php echo $college['details'];?></textarea>
+								</div>
+							  </div><!-- /.box-body -->
+
+							  <div class="box-footer">
+								<button type="submit" name="submit" class="btn btn-primary">Update</button>
+							  </div>
+							</form>
+						  </div>
+
+						</div>	
 					<?php
 						}
 					
