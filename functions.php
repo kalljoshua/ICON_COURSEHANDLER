@@ -2,7 +2,7 @@
 include('includes.php');
 ?>
 
-<?php 
+<?php // login function
 function Login(){
 ?>
 
@@ -91,7 +91,7 @@ function Login(){
 }
 ?>
 
-<?php 
+<?php //authenticate function
 function authenticate(){
 	
 	include('db_connect.php');
@@ -150,7 +150,7 @@ function authenticate(){
 ?>
 
 
-<?php
+<?php //dashboard index
 function index(){
 
 ?>
@@ -294,7 +294,7 @@ function index(){
 ?>
 
 
-<?php
+<?php //add university form
 function Universities(){
 
 ?>
@@ -475,7 +475,74 @@ function Universities(){
 		
 		side_control();
 	  ?>
-      
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 70px; /* Location of the box */
+    padding-left: 400px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
@@ -529,7 +596,7 @@ function Universities(){
 ?>
 
 
-<?php
+<?php //add college form
 function Colleges(){
 
 ?>
@@ -733,7 +800,74 @@ function Colleges(){
 		
 		side_control();
 	  ?>
-      
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 70px; /* Location of the box */
+    padding-left: 400px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script> 
 
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
@@ -787,7 +921,7 @@ function Colleges(){
 ?>
 
 
-<?php
+<?php //add school forms
 function Schools(){
 ?>
 
@@ -955,10 +1089,59 @@ function Schools(){
 					  echo $uni['name'];
 					  ?></td>
                       <td>
-                       <a href="#"> <i class="fa fa-edit"></i> </a>
-                        <i class="fa fa-trash-o"></i>
+                       <a href="#" id="myBtn"> <i class="fa fa-edit"></i> </a>
+                        <a href="index.php?action=deleteSchools&id=<?php echo $idschool;?>"> <i class="fa fa-trash-o"></i> </a>
 					  </td>
-                    </tr>	
+                    </tr>
+
+						<!-- The Modal -->
+						<div id="myModal" class="modal">
+
+						  <!-- Modal content -->
+						  <div class="modal-content">
+							<span class="close">×</span>
+							<?php 
+							$edit = mysqli_query($con,"select * from school where idschool='$idschool'");
+							$school = mysqli_fetch_array($edit);
+							?>
+							<form role="form" action="index.php?action=editSchools&id=<?php echo $idschool;?>" method="POST">
+							  <div class="box-body">
+								<div class="form-group">
+									  <label for="exampleInputEmail1">Scholl Name</label>
+									  <input type="text" name="name" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $school['name'];?>" >
+									</div>
+									
+									 <div class="form-group">
+									  <label>Select</label>
+									  <select class="form-control" name="idcollege" Required="true">
+										<option>Select College</option>
+										<?php 
+										include('db_connect.php');
+											$query_college = mysqli_query($con,"SELECT * FROM college");
+											if(mysqli_num_rows($query_college)>0){
+												while($rows = mysqli_fetch_array($query_college)){
+													$idcollege = $rows['idcollege'];
+													$name = $rows['name'];
+													
+											?>
+											<option value="<?php echo $idcollege; ?>"><?php echo $name; ?></option>
+											<?php
+												}
+											
+											}
+										?>
+										
+									  </select>
+									</div>
+							  </div><!-- /.box-body -->
+
+							  <div class="box-footer">
+								<button type="submit" name="submit" class="btn btn-primary">Update</button>
+							  </div>
+							</form>
+						  </div>
+
+						</div>
 					<?php
 						}
 					
@@ -978,7 +1161,74 @@ function Schools(){
 		
 		side_control();
 	  ?>
-      
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 70px; /* Location of the box */
+    padding-left: 400px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
@@ -1032,7 +1282,7 @@ function Schools(){
 ?>
 
 
-<?php
+<?php //add courses form
 function Courses(){
 ?>
 
@@ -1205,7 +1455,6 @@ function Courses(){
 							$idschool = $row['idschool'];
 							$tuition = $row['tuition'];
 							$cp_private = $row['cp_private'];
-							
 							$se = mysqli_query($con,"SELECT * FROM school WHERE idschool='$idschool'");
 							$sch = mysqli_fetch_array($se);
 							$college_name = $sch['name'];
@@ -1231,10 +1480,78 @@ function Courses(){
 					  <td><?php echo $tuition; ?></td>
 					  <td><?php echo $cp_private; ?></td>
                       <td>
-                       <a href="#"> <i class="fa fa-edit"></i> </a>
-                        <i class="fa fa-trash-o"></i>
+                       <a href="#" id="myBtn"> <i class="fa fa-edit"></i> </a>
+                        <a href="index.php?action=deleteCourse&id=<?php echo $idcourse;?>"> <i class="fa fa-trash-o"></i></a>
 					  </td>
-                    </tr>	
+                    </tr>
+						<!-- The Modal -->
+						<div id="myModal" class="modal">
+
+						  <!-- Modal content -->
+						  <div class="modal-content">
+							<span class="close">×</span>
+							<?php 
+							$edit = mysqli_query($con,"select * from course where idcourse='$idcourse'");
+							$course = mysqli_fetch_array($edit);
+							?>
+							<form role="form" action="index.php?action=editCourses&id=<?php echo $idcourse;?>" method="POST">
+							  <div class="box-body">
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Course Name</label>
+								  <input type="text" name="name" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $course['name'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Course Tuition</label>
+								  <input type="text" name="tuition" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $course['tuition'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Course Duration</label>
+								  <input type="text" name="duration" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $course['duration'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Pujab Cut-off-points</label>
+								  <input type="text" name="cp_pujab" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $course['cp_pujab'];?>">
+								</div>
+								<div class="form-group">
+								  <label for="exampleInputEmail1">Private Cut-off-points</label>
+								  <input type="text" name="cp_private" Required="true" class="form-control" id="exampleInputEmail1" value="<?php echo $course['cp_private'];?>">
+								</div>
+								
+								 <div class="form-group">
+								  <label>Select</label>
+								  <select class="form-control" name="idschool" Required="true">
+									<option>Select School</option>
+									<?php 
+									include('db_connect.php');
+										$query_school = mysqli_query($con,"SELECT * FROM school");
+										if(mysqli_num_rows($query_school)>0){
+											while($rows = mysqli_fetch_array($query_school)){
+												$idschool = $rows['idschool'];
+												$name = $rows['name'];
+												
+										?>
+										<option value="<?php echo $idschool; ?>"><?php echo $name; ?></option>
+										<?php
+											}
+										
+										}
+									?>
+									
+								  </select>
+								</div>
+								<div class="form-group">
+								  <label>Details</label>
+								  <textarea class="form-control" name="details" Required="true" rows="3" ><?php echo $course['details'];?></textarea>
+								</div>
+							  </div><!-- /.box-body -->
+
+							  <div class="box-footer">
+								<button type="submit" name="submit" class="btn btn-primary">Update</button>
+							  </div>
+							</form>
+						  </div>
+
+						</div>
 					<?php
 						}
 					
@@ -1249,6 +1566,78 @@ function Courses(){
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
+	  
+	  <style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 70px; /* Location of the box */
+    padding-left: 400px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+	  
       <?php 
 		footer();
 		
@@ -1329,7 +1718,7 @@ function Courses(){
 
 
 
-<?php
+<?php //Logout function
 function Logout(){
 	// remove all session variables
 	session_unset();
