@@ -1,6 +1,7 @@
-<?php 
+<?php //includes
 include('includes.php');
 ?>
+
 
 <?php // login function
 function Login(){
@@ -90,6 +91,7 @@ function Login(){
 <?php 
 }
 ?>
+
 
 <?php //authenticate function
 function authenticate(){
