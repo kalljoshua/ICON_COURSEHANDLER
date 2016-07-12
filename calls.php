@@ -12,7 +12,7 @@ include("db_connect.php");
 				Login();
 				break;
 				
-			// --Begining of the functions for Schools--		
+			// --Begining of the functions for Universities--		
 			case"Universities";
 			if(isset($_SESSION['userId']))
 				Universities();
@@ -40,9 +40,10 @@ include("db_connect.php");
 			else
 				Login();
 				break;
-			// --End of the functions for Schools--		
+			// --End of the functions for Universities--		
 				
-				
+			
+			// --Begining of the functions for Colleges--
 			case"Colleges";
 			if(isset($_SESSION['userId']))
 				Colleges();
@@ -70,6 +71,7 @@ include("db_connect.php");
 			else
 				Login();
 				break;
+			// --End of the functions for Colleges--
 				
 				
 			// --Begining of the functions for Schools--	
