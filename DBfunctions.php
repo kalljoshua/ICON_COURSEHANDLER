@@ -77,7 +77,6 @@ include('db_connect.php');
 
 
 
-
 <?php //-- insert Colleges Details--
 function insertColleges(){
 
@@ -158,7 +157,6 @@ include('db_connect.php');
 
 
 
-
 <?php //-- insert Schools Details--
 function insertSchools(){
 
@@ -226,7 +224,6 @@ include('db_connect.php');
 
 }
 ?>
-
 
 
 
