@@ -312,6 +312,10 @@ function side_bar(){
                 <li><a href="index.php?action=Colleges"><i class="fa fa-circle-o"></i> Colleges</a></li>
                 <li><a href="index.php?action=Schools"><i class="fa fa-circle-o"></i> Schools</a></li>
                 <li><a href="index.php?action=Courses"><i class="fa fa-circle-o"></i> Courses</a></li>
+				<li><a href="index.php?action=subjects"><i class="fa fa-circle-o"></i> Add subjects</a></li>
+				<li><a href="index.php?action=addessentials"><i class="fa fa-circle-o"></i> Add Essential subjects</a></li>
+				<li><a href="index.php?action=addrelevantsubject"><i class="fa fa-circle-o"></i> Add Relevant subjects</a></li>
+				<li><a href="index.php?action=opportunity"><i class="fa fa-circle-o"></i> Opportunites</a></li>
               </ul>
             </li>
 			<li class="treeview">

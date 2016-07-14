@@ -134,7 +134,72 @@ include("db_connect.php");
 				break;
 			// --End of the functions for courses--	
 			
-							
+			
+			case"subjects";
+			if(isset($_SESSION['userId']))
+				addsubject();
+			else
+				Login();
+				break;
+				
+			
+			case"insertnewsubject";
+			if(isset($_SESSION['userId']))
+				insertnewsubject();
+			
+			else
+				Login();
+				break;
+
+				
+			case"addessentials";
+			if(isset($_SESSION['userId']))
+				essentialsubjects();
+			else
+				Login();
+			break;
+			
+			
+			case"insertessentials";
+			if(isset($_SESSION['userId']))
+				insertessentials();
+			else
+				Login();
+			break;
+			
+			
+			case"addrelevantsubject";
+			if(isset($_SESSION['userId']))
+				addrelevantsubject();
+			else
+				Login();
+			break;
+			
+			
+			case"insertrelevant";
+			if(isset($_SESSION['userId']))
+				insertrelevant();
+			else
+				Login();
+			break;
+			
+			
+			case"opportunity";
+			if(isset($_SESSION['userId']))
+				opportunity();
+			else
+				Login();
+			break;
+			
+			
+			case"insertopportunity";
+			if(isset($_SESSION['userId']))
+				insertopportunity();
+			else
+				Login();
+			break;
+
+			
 			case"Login";
 				Login();
 				break;

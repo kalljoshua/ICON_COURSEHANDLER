@@ -308,4 +308,108 @@ include('db_connect.php');
 ?>
 
 
+<?php //-- insert Essentials' Details--
+function insertessentials(){
+	include('db_connect.php');
+	if(isset($_POST['submit'])){
+	//$idessential = $_POST['idessential'];
+	
+	$tot = $_POST['tot'];
+	//echo $tot;
+	$idcourse = $_POST['idcourse'];
+	$essentialname = $_POST['essentialname'];
+	
+		$insert1 = mysqli_query($con,"INSERT INTO essential (idessential,name,idcourse) 
+			VALUES('','$essentialname','$idcourse')");
+	
+	for($i=2; $i<=$tot; $i++){
+		$new_essentialname = $_POST['essentialname'.$i];	
+		$insert2 = mysqli_query($con,"INSERT INTO essential (idessential,name,idcourse) 
+			VALUES('','$new_essentialname','$idcourse')");
+	}
+			
+			if($insert1 && $insert2 ){
+				echo '<meta content="1;index.php?action=Courses" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($con);
+			}
+	
+	
+	}
+	
+}
+
+?>
+
+<?php //-- insert Relevant Details--
+function insertrelevant(){
+	include('db_connect.php');
+	if(isset($_POST['submit'])){
+	//$idessential = $_POST['idessential'];
+	
+	$tot = $_POST['tot'];
+	//echo $tot;
+	$idcourse = $_POST['idcourse'];
+	$relevantname = $_POST['relevantname'];
+	
+		$insert1 = mysqli_query($con,"INSERT INTO relevant (idrelevant,name,idcourse) 
+			VALUES('','$relevantname','$idcourse')");
+	
+	for($i=2; $i<=$tot; $i++){
+		$new_relevantname = $_POST['relevantname'.$i];	
+		$insert2 = mysqli_query($con,"INSERT INTO relevant (idrelevant,name,idcourse) 
+			VALUES('','$new_relevantname','$idcourse')");
+	}
+			
+			if($insert1 && $insert2 ){
+				echo '<meta content="1;index.php?action=Courses" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($con);
+			}
+	
+	
+	}
+	
+}
+
+?>
+
+<?php //-- insert Opportunity Details--
+function insertopportunity(){
+	include('db_connect.php');
+	if(isset($_POST['submit'])){
+	//$idessential = $_POST['idessential'];
+	
+	$tot = $_POST['tot'];
+	//echo $tot;
+	$idcourse = $_POST['idcourse'];
+	$opportunityname = $_POST['opportunityname'];
+	
+		$insert1 = mysqli_query($con,"INSERT INTO opportunity (idopportunity,name,idcourse) 
+			VALUES('','$opportunityname','$idcourse')");
+	
+	for($i=2; $i<=$tot; $i++){
+		$new_opportunityname = $_POST['opportunityname'.$i];	
+		$insert2 = mysqli_query($con,"INSERT INTO opportunity (idopportunity,name,idcourse) 
+			VALUES('','$new_opportunityname','$idcourse')");
+	}
+			
+			if($insert1 && $insert2 ){
+				echo '<meta content="1;index.php?action=Courses" http-equiv="refresh" />';
+			}else{
+				echo '<meta content="1;index.php?action=index" http-equiv="refresh" />';
+				echo "nah sucess ".mysqli_error($con);
+			}
+	
+	
+	}
+	
+	
+	
+}?>
+
+
+
 
